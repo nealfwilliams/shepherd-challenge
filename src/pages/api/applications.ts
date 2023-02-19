@@ -16,16 +16,16 @@ export default async function handler(
       throw new Error('Unexpected HTTP method');
     }
 
-    const formTypeId = req.body.formTypeId as number;
+    const typeId = req.body.typeId as number;
 
-    const formData = await prisma.formData.create({
+    const application = await prisma.application.create({
       data: {
-        formTypeId,
+        typeId,
         fields: {}
       }
     });
 
-    res.status(200).json({ id: formData.id })
+    res.status(200).json({ id: application.id })
 
   } catch (e) {
     res.status(400);

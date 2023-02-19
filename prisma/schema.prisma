@@ -10,16 +10,16 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model FormData {
-  id         Int       @id @default(autoincrement())
-  formTypeId Int
-  formType   FormType  @relation(fields: [formTypeId], references: [id])
-  fields     Json
+model Application {
+  id      Int              @id @default(autoincrement())
+  typeId  Int
+  type    ApplicationType  @relation(fields: [typeId], references: [id])
+  fields  Json
 }
 
-model FormType {
-  id        Int        @id @default(autoincrement())
-  forms     FormData[]
-  label     String
-  spec      Json
+model ApplicationType {
+  id            Int           @id @default(autoincrement())
+  applications  Application[]
+  label         String
+  spec          Json
 }

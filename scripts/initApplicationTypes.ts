@@ -5,14 +5,14 @@ const prisma = new PrismaClient()
 
 async function main() {
   forms.forEach(async (form) => {
-    const formType = await prisma.formType.findFirst({
+    const applicationType = await prisma.applicationType.findFirst({
       where: {
         label: form.name
       }
     });
 
-    if (!formType) {
-      await prisma.formType.create({
+    if (!applicationType) {
+      await prisma.applicationType.create({
         data: {
           label: form.name,
           spec: form.fields

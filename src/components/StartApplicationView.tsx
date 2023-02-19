@@ -2,10 +2,11 @@ import React, { useState } from 'react'
 import { Prisma } from '@prisma/client';
 import { post } from '@/utils';
 import { useRouter } from 'next/router'
+import { ApplicationType } from '@/types';
 
-const StartApplicationView: React.FC<{
-  formTypes: Prisma.FormTypeGetPayload<{}>[]
-}> = ({ formTypes }) => {
+export const StartApplicationView: React.FC<{
+  applicationTypes: ApplicationType[]
+}> = ({ applicationTypes }) => {
   const router = useRouter();
   const [inProgress, setProgress] = useState(false);
 
@@ -14,12 +15,12 @@ const StartApplicationView: React.FC<{
     return <div>Loading...</div>;
   }
 
-  const startApplication = async (formTypeId: number) => {
+  const startApplication = async (typeId: number) => {
     setProgress(true);
-    const response = await post('/api/forms', { formTypeId });
+    const response = await post('/api/applications', { typeId });
 
     if (response.id) {
-      router.push(`/forms/${response.id}`);
+      router.push(`/applications/${response.id}`);
     }
 
     // TO-DO handle error
@@ -31,15 +32,13 @@ const StartApplicationView: React.FC<{
         Start New Application
       </div>
 
-      {formTypes.map(formType => {
+      {applicationTypes.map(applicationType => {
         return (
-          <button onClick={() => startApplication(formType.id)}>
-            {formType.label}
+          <button onClick={() => startApplication(applicationType.id)}>
+            {applicationType.label}
           </button>
         );
       })}
     </>
   );
 };
-
-export default StartApplicationView;

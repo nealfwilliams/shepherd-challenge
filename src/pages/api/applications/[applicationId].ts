@@ -4,7 +4,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 
 type ResponseData = {
   error?: string;
-  formData?: Object;
+  application?: Object;
 } | typeof SUCCESS_RESPONSE
 
 const prisma = new PrismaClient();
@@ -14,35 +14,35 @@ export default async function handler(
   res: NextApiResponse<ResponseData>
 ) {
   if (req.method === 'GET') {
-    const { formId } = req.query;
+    const { applicationId } = req.query;
 
-    const formData = await prisma.formData.findFirst({
+    const application = await prisma.application.findFirst({
       where: {
-        id: Number(formId)
+        id: Number(applicationId)
       },
       include: {
-        formType: true
+        type: true
       }
     });
 
-    if (!formData) {
+    if (!application) {
       res.status(404);
     } else {
-      res.status(200).json({ formData })
+      res.status(200).json({ application })
     }
 
   } else if (req.method === 'PATCH') {
-    const { formId } = req.query;
+    const { applicationId } = req.query;
     const {fields} = req.body;
 
     // TO-DO validate fields against form spec;
     try {
-      await prisma.formData.update({
+      await prisma.application.update({
         data: {
           fields
         },
         where: {
-          id: Number(formId)
+          id: Number(applicationId)
         },
       });
     } catch {
