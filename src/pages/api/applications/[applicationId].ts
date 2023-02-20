@@ -45,6 +45,9 @@ export default async function handler(
           id: Number(applicationId)
         },
       });
+
+      res.status(200).send(SUCCESS_RESPONSE);
+
     } catch {
       res.status(400).send({
         error: 'Error updating form data'
