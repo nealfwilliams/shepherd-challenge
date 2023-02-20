@@ -1,26 +1,30 @@
 import React from 'react';
 import { Field, Formik } from 'formik';
-import { Application, ApplicationSpec, ApplicationSpecField, APPLICATION_COMPONENT } from '@/types';
+import { Application, ApplicationSpec, ApplicationSpecComponent, APPLICATION_COMPONENT } from '@/types';
 
-const ApplicationFormField: React.FC<{
-  field: ApplicationSpecField,
+const ApplicationFormComponent: React.FC<{
+  component: ApplicationSpecComponent,
   path?: string[];
-}> = ({ field, path=[] }) => {
-  if (field.component === APPLICATION_COMPONENT.SECTION) {
+}> = ({ component, path=[] }) => {
+  if (component.component === APPLICATION_COMPONENT.SECTION) {
     return (
       <div role="group">
         <div role="heading" aria-level={1 + path.length}>
-          {field.title}
+          {component.title}
         </div>
 
-        {field.fields.map(childField => (
-          <ApplicationFormField path={path.concat([field.name])} field={childField} key={field.name} />
+        {component.fields.map(childComponent => (
+          <ApplicationFormComponent
+            path={path.concat([component.name])}
+            component={childComponent}
+            key={component.name}
+          />
         ))}
 
       </div>
     );
   } else {
-    const fieldName = path.concat([ field.name ]).join('__')
+    const fieldName = path.concat([ component.name ]).join('__')
 
     return (
       <div>{fieldName}</div>
@@ -39,8 +43,8 @@ export const ApplicationForm: React.FC<{
       onSubmit={() => {}}
     >
       <>
-        {applicationSpec.map((field) => (
-          <ApplicationFormField field={field} />
+        {applicationSpec.map((component) => (
+          <ApplicationFormComponent component={component} />
         ))}
       </>
     </Formik>

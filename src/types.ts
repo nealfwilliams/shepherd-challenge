@@ -21,7 +21,7 @@ export type ApplicationSpecSection = {
   title: string;
   description: string;
   name: string;
-  fields: ApplicationSpecField[]
+  fields: ApplicationSpecComponent[]
 };
 
 // TO-DO break this up into separate types so min only can be applied to number
@@ -61,10 +61,13 @@ export type ApplicationSpecSelectField = {
   validations?: ApplicationFieldValidation[];
 };
 
-export type ApplicationSpecField = 
+export type ApplicationSpecComponent = 
+  | ApplicationFormField
   | ApplicationSpecSection
+
+export type ApplicationFormField = 
   | ApplicationSpecTextField
   | ApplicationSpecNumberField
   | ApplicationSpecSelectField
 
-export type ApplicationSpec = ApplicationSpecField[];
+export type ApplicationSpec = ApplicationSpecComponent[];
