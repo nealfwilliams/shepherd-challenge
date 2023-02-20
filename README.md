@@ -4,18 +4,23 @@ This repo has the code for my Shepherd take-home challenge. I'll be using this r
 document my progress and outline my work iteratively
 
 ### Planned work
-- Initialize prisma and set up backend models
-- Set up basic endpoints
-- Set up barebones start page
-- Main form page
-    - Form Provider (Formik)
+- [x] Initialize prisma and set up backend models
+- [x] Set up basic endpoints
+- [x] Set up barebones start page
+- [x] Set up components for notification
+- [ ] Implement permission check on endpoints
+- [ ] Main form page
+    - [x] Form Provider (Formik)
     - Components
-        - Section
-        - Input
-        - Checkbox
-        - Select
-    - Add Fronted Validation
+        - [x] Section
+        - [x] Input
+        - [ ] Checkbox
+        - [ ] Number
+        - [ ] Url
+        - [x] Select
+    - Add Frontend Validation
 - Nice-to-haves
-  - Restyle start page
-  - Add Backend Schema Validation
-  - Add unit tests
+  - [ ] Restyle start page
+  - [ ] Restyle form fields
+  - [ ] Add Backend Schema Validation
+  - [ ] Add unit tests
