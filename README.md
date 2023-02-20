@@ -10,7 +10,7 @@ document my progress and outline my work iteratively
 - [x] Set up components for notification
 - [x] Implement permission check on endpoints
 - [x] Implement permission check on pages
-- [ ] Main form page
+- [x] Main form page
     - [x] Form Provider (Formik)
     - Components
         - [x] Section
@@ -19,7 +19,7 @@ document my progress and outline my work iteratively
         - [x] Number
         - [x] Url
         - [x] Select
-    - Add Frontend Validation
+    - [x] Add Frontend Validation
 - Nice-to-haves
   - [ ] Restyle start page
   - [ ] Restyle form fields
