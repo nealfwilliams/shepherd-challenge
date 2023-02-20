@@ -16,9 +16,15 @@ export const TextField: React.FC<{
 }> = ({ fieldSpec, path, type }) => {
   return (
     <FieldWrapper fieldSpec={fieldSpec} path={path}>
-      {({ field }) => (
+      {({ field, helpers }) => (
         <div>
-          <MuiTextField {...field} type={type}></MuiTextField>
+          <MuiTextField
+            {...field}
+            type={type}
+            onChange={type !== TEXT_FIELD_TYPE.NUMBER ? field.onChange : (e) => {
+              helpers.setValue(e.target.value ? Number(e.target.value) : undefined);
+            }}
+          />
         </div>
       )}
     </FieldWrapper>

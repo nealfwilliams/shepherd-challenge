@@ -24,8 +24,12 @@ export const FieldWrapper: React.FC<{
     name: fieldName,
     validate: () => {
       for (const validation of fieldSpec.validate || []) {
-        if (validation.type === 'required' && !field.value) {
+        if (validation.type === 'required' && ['', null, undefined].includes(field.value)) {
           return 'This field is required';
+        }
+
+        if (validation.type === 'min' && field.value < validation.value) {
+          return `The field value must be greater than ${0}`;
         }
       }
     }
