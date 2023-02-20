@@ -4,6 +4,7 @@ import { Application, ApplicationSpec, ApplicationSpecComponent, APPLICATION_COM
 import { TextField } from './forms/TextField';
 import { SelectField } from './forms/SelectField';
 import { patch } from '@/utils';
+import { NOTICE_TYPE, useNotice } from './Notice';
 
 const ApplicationFormComponent: React.FC<{
   component: ApplicationSpecComponent,
@@ -42,6 +43,8 @@ const ApplicationFormComponent: React.FC<{
 export const ApplicationForm: React.FC<{
   application: Application
 }> = ({ application }) => {
+  const {open: openNotice} = useNotice();
+
   const applicationSpec = application.type.spec as ApplicationSpec;
   const submitUrl = `/api/applications/${application.id}`
 
@@ -52,6 +55,20 @@ export const ApplicationForm: React.FC<{
         const result = await patch(submitUrl, {
           fields: values 
         })
+
+        if (result.success) {
+          openNotice({
+            message: 'Application saved successfully',
+            type: NOTICE_TYPE.SUCCESS
+          });
+        } else {
+          openNotice({
+            message: 'Something went wrong! Try again later.',
+            type: NOTICE_TYPE.ERROR
+          });
+        }
+
+
       }}
     >
       {(props) => (

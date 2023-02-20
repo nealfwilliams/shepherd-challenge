@@ -2,6 +2,7 @@ import React from 'react'
 import { Prisma, PrismaClient } from '@prisma/client'
 import { Application } from '@/types';
 import { ApplicationForm } from '@/components/ApplicationForm';
+import { NoticeBanner, NoticeProvider } from '@/components/Notice';
 
 const prisma = new PrismaClient();
 
@@ -27,7 +28,11 @@ const ApplicationPage: React.FC<{
 }> = ({ application }) =>  {
   return (
     <main>
-      <ApplicationForm application={application} />
+      <NoticeProvider>
+        <ApplicationForm application={application} />
+        <NoticeBanner />
+      </NoticeProvider>
+
     </main>
   );
 }
