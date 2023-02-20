@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field, Formik } from 'formik';
 import { Application, ApplicationSpec, ApplicationSpecComponent, APPLICATION_COMPONENT } from '@/types';
-import { TextField } from './forms/TextField';
+import { TextField, TEXT_FIELD_TYPE } from './forms/TextField';
 import { SelectField } from './forms/SelectField';
 import { patch } from '@/utils';
 import { NOTICE_TYPE, useNotice } from './Notice';
@@ -33,7 +33,15 @@ const ApplicationFormComponent: React.FC<{
     }
 
     if (component.component === APPLICATION_COMPONENT.TEXT) {
-      return <TextField fieldSpec={component} path={path}/>
+      return <TextField fieldSpec={component} path={path} type={TEXT_FIELD_TYPE.TEXT}/>
+    }
+
+    if (component.component === APPLICATION_COMPONENT.NUMBER) {
+      return <TextField fieldSpec={component} path={path} type={TEXT_FIELD_TYPE.NUMBER}/>
+    }
+
+    if (component.component === APPLICATION_COMPONENT.URL) {
+      return <TextField fieldSpec={component} path={path} type={TEXT_FIELD_TYPE.URL}/>
     }
 
     return null 

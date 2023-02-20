@@ -13,7 +13,8 @@ export enum APPLICATION_COMPONENT {
   TEXT='text',
   NUMBER='number',
   SELECT='select',
-  CHECKBOX='checkbox'
+  CHECKBOX='checkbox',
+  URL='url'
 }
 
 export type ApplicationSpecSection = {
@@ -53,6 +54,14 @@ export type ApplicationSpecCheckboxField = {
   validations?: ApplicationFieldValidation[]
 };
 
+export type ApplicationSpecUrlField = {
+  component: APPLICATION_COMPONENT.URL;
+  name: string;
+  label: string;
+  options: string[];
+  validations?: ApplicationFieldValidation[];
+};
+
 export type ApplicationSpecSelectField = {
   component: APPLICATION_COMPONENT.SELECT;
   name: string;
@@ -69,5 +78,7 @@ export type ApplicationSpecField =
   | ApplicationSpecTextField
   | ApplicationSpecNumberField
   | ApplicationSpecSelectField
+  | ApplicationSpecUrlField
+  | ApplicationSpecCheckboxField
 
 export type ApplicationSpec = ApplicationSpecComponent[];
