@@ -1,4 +1,4 @@
-import { SUCCESS_RESPONSE } from '@/constants';
+import { AUTH_COOKIE_NAME, AUTH_COOKIE_VALUE, SUCCESS_RESPONSE } from '@/constants';
 import { PrismaClient } from '@prisma/client';
 import type { NextApiRequest, NextApiResponse } from 'next'
 
@@ -13,6 +13,12 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<ResponseData>
 ) {
+  if (req.cookies[AUTH_COOKIE_NAME] !== AUTH_COOKIE_VALUE) {
+    res.status(403).json({
+      error: 'Not authorized'
+    });
+  }
+
   if (req.method === 'GET') {
     const { applicationId } = req.query;
 
@@ -26,7 +32,9 @@ export default async function handler(
     });
 
     if (!application) {
-      res.status(404);
+      res.status(404).json({
+        error: 'Can not find application'
+      });
     } else {
       res.status(200).json({ application })
     }

@@ -8,7 +8,8 @@ document my progress and outline my work iteratively
 - [x] Set up basic endpoints
 - [x] Set up barebones start page
 - [x] Set up components for notification
-- [ ] Implement permission check on endpoints
+- [x] Implement permission check on endpoints
+- [x] Implement permission check on pages
 - [ ] Main form page
     - [x] Form Provider (Formik)
     - Components
