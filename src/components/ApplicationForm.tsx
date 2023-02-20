@@ -22,7 +22,7 @@ const ApplicationFormComponent: React.FC<{
           <ApplicationFormComponent
             path={path.concat([component.name])}
             component={childComponent}
-            key={component.name}
+            key={childComponent.name}
           />
         ))}
 

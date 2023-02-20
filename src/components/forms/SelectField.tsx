@@ -12,7 +12,7 @@ export const SelectField: React.FC<{
 }> = ({ fieldSpec, path }) => {
   return (
     <FieldWrapper fieldSpec={fieldSpec} path={path}>
-      {({ validate, field }) => (
+      {({ field }) => (
         <div>
           <MuiSelect {...field}>
             {fieldSpec.options.map(option => (

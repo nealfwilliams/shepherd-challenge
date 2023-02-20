@@ -16,7 +16,7 @@ export const TextField: React.FC<{
 }> = ({ fieldSpec, path, type }) => {
   return (
     <FieldWrapper fieldSpec={fieldSpec} path={path}>
-      {({ validate, field }) => (
+      {({ field }) => (
         <div>
           <MuiTextField {...field} type={type}></MuiTextField>
         </div>

@@ -9,7 +9,7 @@ export const CheckboxField: React.FC<{
 }> = ({ fieldSpec, path }) => {
   return (
     <FieldWrapper fieldSpec={fieldSpec} path={path}>
-      {({ validate, field, helpers }) => (
+      {({ field, helpers }) => (
         <MuiCheckbox
           {...field}
           onChange={(e) => {

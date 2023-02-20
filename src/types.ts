@@ -37,21 +37,21 @@ export type ApplicationSpecTextField = {
   component: APPLICATION_COMPONENT.TEXT;
   name: string;
   label: string;
-  validations?: ApplicationFieldValidation[]
+  validate?: ApplicationFieldValidation[]
 };
 
 export type ApplicationSpecNumberField = {
   component: APPLICATION_COMPONENT.NUMBER;
   name: string;
   label: string;
-  validations?: ApplicationFieldValidation[]
+  validate?: ApplicationFieldValidation[]
 };
 
 export type ApplicationSpecCheckboxField = {
   component: APPLICATION_COMPONENT.CHECKBOX;
   name: string;
   label: string;
-  validations?: ApplicationFieldValidation[]
+  validate?: ApplicationFieldValidation[]
 };
 
 export type ApplicationSpecUrlField = {
@@ -59,7 +59,7 @@ export type ApplicationSpecUrlField = {
   name: string;
   label: string;
   options: string[];
-  validations?: ApplicationFieldValidation[];
+  validate?: ApplicationFieldValidation[];
 };
 
 export type ApplicationSpecSelectField = {
@@ -67,7 +67,7 @@ export type ApplicationSpecSelectField = {
   name: string;
   label: string;
   options: string[];
-  validations?: ApplicationFieldValidation[];
+  validate?: ApplicationFieldValidation[];
 };
 
 export type ApplicationSpecComponent = 
