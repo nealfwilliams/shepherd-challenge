@@ -62,10 +62,10 @@ export type ApplicationSpecSelectField = {
 };
 
 export type ApplicationSpecComponent = 
-  | ApplicationFormField
+  | ApplicationSpecField
   | ApplicationSpecSection
 
-export type ApplicationFormField = 
+export type ApplicationSpecField = 
   | ApplicationSpecTextField
   | ApplicationSpecNumberField
   | ApplicationSpecSelectField

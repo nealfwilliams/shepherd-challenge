@@ -1,6 +1,7 @@
 import React from 'react';
 import { Field, Formik } from 'formik';
 import { Application, ApplicationSpec, ApplicationSpecComponent, APPLICATION_COMPONENT } from '@/types';
+import { TextField } from './forms/TextField';
 
 const ApplicationFormComponent: React.FC<{
   component: ApplicationSpecComponent,
@@ -24,11 +25,11 @@ const ApplicationFormComponent: React.FC<{
       </div>
     );
   } else {
-    const fieldName = path.concat([ component.name ]).join('__')
+    if (component.component === APPLICATION_COMPONENT.TEXT) {
+      return <TextField fieldSpec={component} path={path}/>
+    }
 
-    return (
-      <div>{fieldName}</div>
-    )
+    return null 
   }
 }
 
@@ -40,7 +41,8 @@ export const ApplicationForm: React.FC<{
   return (
     <Formik
       initialValues={application.fields as any} 
-      onSubmit={() => {}}
+      onSubmit={() => {
+      }}
     >
       <>
         {applicationSpec.map((component) => (
