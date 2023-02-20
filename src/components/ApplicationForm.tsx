@@ -2,6 +2,7 @@ import React from 'react';
 import { Field, Formik } from 'formik';
 import { Application, ApplicationSpec, ApplicationSpecComponent, APPLICATION_COMPONENT } from '@/types';
 import { TextField } from './forms/TextField';
+import { SelectField } from './forms/SelectField';
 
 const ApplicationFormComponent: React.FC<{
   component: ApplicationSpecComponent,
@@ -25,6 +26,10 @@ const ApplicationFormComponent: React.FC<{
       </div>
     );
   } else {
+    if (component.component === APPLICATION_COMPONENT.SELECT) {
+      return <SelectField fieldSpec={component} path={path}/>
+    }
+
     if (component.component === APPLICATION_COMPONENT.TEXT) {
       return <TextField fieldSpec={component} path={path}/>
     }
