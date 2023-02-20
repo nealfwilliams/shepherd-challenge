@@ -15,9 +15,9 @@ document my progress and outline my work iteratively
     - Components
         - [x] Section
         - [x] Input
-        - [ ] Checkbox
-        - [ ] Number
-        - [ ] Url
+        - [x] Checkbox
+        - [x] Number
+        - [x] Url
         - [x] Select
     - Add Frontend Validation
 - Nice-to-haves
