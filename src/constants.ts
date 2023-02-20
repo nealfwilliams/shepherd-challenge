@@ -1,1 +1,3 @@
-export const SUCCESS_RESPONSE = 'success';
+export const SUCCESS_RESPONSE = {
+  'success': true
+};

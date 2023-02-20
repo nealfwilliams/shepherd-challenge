@@ -3,6 +3,7 @@ import { Field, Formik } from 'formik';
 import { Application, ApplicationSpec, ApplicationSpecComponent, APPLICATION_COMPONENT } from '@/types';
 import { TextField } from './forms/TextField';
 import { SelectField } from './forms/SelectField';
+import { patch } from '@/utils';
 
 const ApplicationFormComponent: React.FC<{
   component: ApplicationSpecComponent,
@@ -42,18 +43,32 @@ export const ApplicationForm: React.FC<{
   application: Application
 }> = ({ application }) => {
   const applicationSpec = application.type.spec as ApplicationSpec;
+  const submitUrl = `/api/applications/${application.id}`
 
   return (
     <Formik
       initialValues={application.fields as any} 
-      onSubmit={() => {
+      onSubmit={async (values) => {
+        const result = await patch(submitUrl, {
+          fields: values 
+        })
       }}
     >
-      <>
-        {applicationSpec.map((component) => (
-          <ApplicationFormComponent component={component} key={component.name} />
-        ))}
-      </>
+      {(props) => (
+        <>
+          {applicationSpec.map((component) => (
+            <ApplicationFormComponent component={component} key={component.name} />
+          ))}
+
+          {/*
+            I am aware this doesn't follow typical form semantics
+            I can explain why I choose this approach in more detail
+          */}
+          <button onClick={() => {props.submitForm()}}>
+            Submit
+          </button>
+        </>
+      )}
     </Formik>
   )
 };
