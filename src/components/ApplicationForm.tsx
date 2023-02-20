@@ -44,7 +44,7 @@ export const ApplicationForm: React.FC<{
     >
       <>
         {applicationSpec.map((component) => (
-          <ApplicationFormComponent component={component} />
+          <ApplicationFormComponent component={component} key={component.name} />
         ))}
       </>
     </Formik>
