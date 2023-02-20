@@ -1,6 +1,5 @@
 import React from 'react'
-import { Prisma, PrismaClient } from '@prisma/client'
-import Head from 'next/head'
+import { PrismaClient } from '@prisma/client'
 import { StartApplicationView } from '@/components/StartApplicationView';
 import { ApplicationType } from '@/types';
 
@@ -12,7 +11,7 @@ export async function getServerSideProps() {
   return {
     props: {
       applicationTypes
-    }, // will be passed to the page component as props
+    }
   }
 }
 
