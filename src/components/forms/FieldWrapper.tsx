@@ -2,6 +2,7 @@ import React from 'react';
 import { ApplicationSpecField } from "@/types";
 import { FieldHelperProps, FieldInputProps, FieldMetaProps, useField } from 'formik';
 import Alert from '@mui/material/Alert';
+import { FIELD_PATH_DELIMITER } from '@/constants';
 
 type ChildFn = (params: {
   fieldName: string;
@@ -19,7 +20,7 @@ export const FieldWrapper: React.FC<{
   path,
   children
 }) => {
-  const fieldName = path.concat([ fieldSpec.name ]).join('__')
+  const fieldName = path.concat([ fieldSpec.name ]).join(FIELD_PATH_DELIMITER)
   const [field, meta, helpers] = useField({
     name: fieldName,
     validate: () => {

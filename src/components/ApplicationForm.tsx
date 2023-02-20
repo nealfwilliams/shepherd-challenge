@@ -6,6 +6,7 @@ import { SelectField } from './forms/SelectField';
 import { patch } from '@/utils';
 import { NOTICE_TYPE, useNotice } from './Notice';
 import { CheckboxField } from './forms/CheckboxField';
+import { FIELD_PATH_DELIMITER } from '@/constants';
 
 const ApplicationFormComponent: React.FC<{
   component: ApplicationSpecComponent,
@@ -53,6 +54,27 @@ const ApplicationFormComponent: React.FC<{
   }
 }
 
+const getEmptyFormValues = (spec: ApplicationSpec) => {
+  const initialValues: {[s: string]: undefined} = {}
+
+  const setInitialValue = (component: ApplicationSpecComponent, path: string[]) => {
+    if (component.component === APPLICATION_COMPONENT.SECTION) {
+      component.fields.forEach((subcomponent) => {
+        setInitialValue(subcomponent, path.concat([component.name]));
+      })
+    } else {
+      const fieldName = path.concat([component.name]).join(FIELD_PATH_DELIMITER);
+      initialValues[fieldName] = undefined;
+    }
+  }
+
+  spec.forEach((component) => {
+    setInitialValue(component, []);
+  })
+
+  return initialValues;
+}
+
 export const ApplicationForm: React.FC<{
   application: Application
 }> = ({ application }) => {
@@ -63,8 +85,11 @@ export const ApplicationForm: React.FC<{
 
   return (
     <Formik
-      initialValues={application.fields as any} 
-      onSubmit={async (values) => {
+      initialValues={{
+        ...(getEmptyFormValues(applicationSpec)),
+        ...application.fields as any
+      }} 
+      onSubmit={async (values, helpers) => {
         const result = await patch(submitUrl, {
           fields: values 
         })
@@ -80,8 +105,6 @@ export const ApplicationForm: React.FC<{
             type: NOTICE_TYPE.ERROR
           });
         }
-
-
       }}
     >
       {(props) => (
@@ -94,7 +117,16 @@ export const ApplicationForm: React.FC<{
             I am aware this doesn't follow typical form semantics
             I can explain why I choose this approach in more detail
           */}
-          <button onClick={() => {props.submitForm()}}>
+          <button onClick={() => {
+            if (props.errors) {
+              openNotice({
+                message: 'There are some issues with your application',
+                type: NOTICE_TYPE.ERROR
+              });
+            }
+
+            props.submitForm();
+          }}>
             Submit
           </button>
         </>
