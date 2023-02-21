@@ -17,7 +17,7 @@ const StartApplicationButton = styled(Column, {
     m: 4,
     p: 4,
     border: true,
-    borderColor: 'textLight',
+    borderColor: 'backgroundLight',
     borderRadius: 2,
     bg: 'faint',
     clickable: true,

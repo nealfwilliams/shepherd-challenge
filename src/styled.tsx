@@ -228,8 +228,8 @@ const styled = createStyled<
     }
 
     if (props.border) {
-      const color = props.borderColor || colors.textLight;
-      styles.border = `solid 1px ${color}`;
+      const color = props.borderColor || colors.textLight as Color;
+      styles.border = `solid 1px ${colors[color]}`;
     }
 
     if (props.borderBottom) {
