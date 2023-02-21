@@ -71,6 +71,10 @@ export const NoticeBanner = () => {
       open={notice.isOpen} 
       onClose={notice.dismiss}
       autoHideDuration={6000}
+      anchorOrigin={{
+        vertical: 'bottom',
+        horizontal: 'center'
+      }}
     >
       <Alert
         severity={notice.latestType === NOTICE_TYPE.SUCCESS ? 'success' : 'error'}

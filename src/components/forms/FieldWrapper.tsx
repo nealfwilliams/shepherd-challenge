@@ -3,6 +3,9 @@ import { ApplicationSpecField } from "@/types";
 import { FieldHelperProps, FieldInputProps, FieldMetaProps, useField } from 'formik';
 import Alert from '@mui/material/Alert';
 import { FIELD_PATH_DELIMITER } from '@/constants';
+import { Row } from '../base/Row';
+import styled from '@/styled';
+import { Column } from '../base/Column';
 
 type ChildFn = (params: {
   fieldName: string;
@@ -10,6 +13,18 @@ type ChildFn = (params: {
   meta: FieldMetaProps<any>
   helpers: FieldHelperProps<any>,
 }) => React.ReactElement;
+
+const Label = styled('label', {
+  props: {
+    font: 'labelSmall',
+  }
+})
+
+const FieldContainer = styled('div', {
+  props: {
+    mt: 2
+  }
+});
 
 export const FieldWrapper: React.FC<{
   fieldSpec: ApplicationSpecField,
@@ -37,8 +52,10 @@ export const FieldWrapper: React.FC<{
   });
 
   return (
-    <div>
-      <label>{fieldSpec.label}</label>
+    <FieldContainer>
+      <Label>
+        {fieldSpec.label}
+      </Label>
       {children({
         fieldName,
         field,
@@ -46,8 +63,10 @@ export const FieldWrapper: React.FC<{
         helpers,
       })}
       {meta.touched && meta.error && (
-        <Alert severity="error">{meta.error}</Alert>
+        <Row mt={1}>
+          <Alert severity="error">{meta.error}</Alert>
+        </Row>
       )}
-    </div>
+    </FieldContainer>
   )
 };

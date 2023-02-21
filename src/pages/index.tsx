@@ -19,11 +19,11 @@ const Home: React.FC<{
   applicationTypes: ApplicationType[]
 }> = ({ applicationTypes }) =>  {
   return (
-    <>
-      <main>
+    <main>
+      <div className="main-content">
         <StartApplicationView applicationTypes={applicationTypes} />
-      </main>
-    </>
+      </div>
+    </main>
   )
 }
 

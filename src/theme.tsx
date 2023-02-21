@@ -40,6 +40,7 @@ export type FontType =
   | 'labelMedium'
   | 'textMedium'
   | 'textLarge'
+  | 'controlSmall'
 
 type FontStyles = {
   [key in FontType]: FontStyle
@@ -69,6 +70,10 @@ export const fontStyles: FontStyles = {
   },
   headingLarge: {
     fontSize: 24,
+    fontWeight: '600'
+  },
+  controlSmall: {
+    fontSize: 16,
     fontWeight: '600'
   }
 }
