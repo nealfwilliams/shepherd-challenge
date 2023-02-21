@@ -45,7 +45,7 @@ export const FieldWrapper: React.FC<{
         }
 
         if (validation.type === 'min' && field.value < validation.value) {
-          return `The field value must be greater than ${0}`;
+          return `The field value must be greater than or equal to ${0}`;
         }
       }
     }
