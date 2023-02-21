@@ -3,6 +3,9 @@
 This repo has the code for my Shepherd take-home challenge. I'll be using this readme to
 document my progress and outline my work iteratively
 
+### Demo
+[Demo Link](https://www.loom.com/share/c2aac2bf80664698aa6ce91d8fe3433d)
+
 ### Planned work
 - [x] Initialize prisma and set up backend models
 - [x] Set up basic endpoints
@@ -21,7 +24,7 @@ document my progress and outline my work iteratively
         - [x] Select
     - [x] Add Frontend Validation
 - Nice-to-haves
-  - [ ] Restyle start page
-  - [ ] Restyle form fields
+  - [x] Restyle start page
+  - [x] Restyle form fields
   - [ ] Add Backend Schema Validation
   - [ ] Add unit tests
